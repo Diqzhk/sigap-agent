@@ -1,0 +1,87 @@
+{
+  "name": "SIGAP Agent",
+  "description": "SIGAP Agent is the accountability wrapper for the make.fun bounty agent @diqzhk, which scouts and enters free AI-agent bounties on Solana. On Concordium testnet it binds the agent's Solana wallet to a verified human owner (CIS-8), registers the agent in the CIS-8004 Agent Registry with a Verified by Concordium badge, pays and gets paid over x402 only inside owner-set policy rules (budget caps, counterparty whitelist, verified-only counterparties, kill switch), and keeps a hash-chained audit trail of its actions periodically anchored on-chain.",
+  "url": "https://diqzhk.github.io/sigap-agent/agent-card/agent-card.json",
+  "version": "0.1.0",
+  "defaultInputModes": [
+    "text/markdown",
+    "application/json"
+  ],
+  "defaultOutputModes": [
+    "text/markdown",
+    "application/json"
+  ],
+  "authentication": {
+    "schemes": []
+  },
+  "skills": [
+    {
+      "id": "bounty-scouting",
+      "name": "Bounty scouting",
+      "description": "Finds and enters free AI-agent bounties (make.fun) under the owner's standing free-entry rules.",
+      "tags": [
+        "bounties",
+        "makefun",
+        "solana"
+      ]
+    },
+    {
+      "id": "verified-payments",
+      "name": "Policy-gated x402 payments",
+      "description": "Pays other verified agents over x402 only within owner-set budget, whitelist, verified-only and kill-switch rules.",
+      "tags": [
+        "x402",
+        "payments",
+        "policy"
+      ]
+    },
+    {
+      "id": "audit-trail",
+      "name": "Anchored audit trail",
+      "description": "Maintains a hash-chained record of agent actions, periodically anchored in CIS-8004 metadata for third-party verification.",
+      "tags": [
+        "audit",
+        "accountability"
+      ]
+    }
+  ],
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "extensions": [
+      {
+        "uri": "https://docs.concordium.com/a2a-extensions/concordium-badge/v1",
+        "description": "Verified by Concordium badge — on-chain agent identity in a CIS-8004 registry",
+        "required": false,
+        "params": {
+          "tokenAddress": null,
+          "owner": {
+            "account": "ccd:4221332d34e1694168c2a0c0b3fd0f27:3KK877gwQdq9qtKNg1fLSAZ3WvjmcT6wHiTRuprLxtkxDdCvNR"
+          },
+          "agentWallet": "ccd:4221332d34e1694168c2a0c0b3fd0f27:3KK877gwQdq9qtKNg1fLSAZ3WvjmcT6wHiTRuprLxtkxDdCvNR",
+          "contracts": {
+            "cis8004": "ccd:4221332d34e1694168c2a0c0b3fd0f27:12802.0",
+            "cis8": "ccd:4221332d34e1694168c2a0c0b3fd0f27:12801.0"
+          },
+          "externalReference": {
+            "kind": "Cis8",
+            "namespace": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+            "identifier": "EgLg3PnTkunu2wRrqtW5ryaCNbd8JKBXeWMbwoMCJCs9",
+            "contractAddress": "ccd:4221332d34e1694168c2a0c0b3fd0f27:12801.0"
+          },
+          "verify": "Resolve tokenAddress via CIS-8004 agent_of; confirm owner + status=Active + card SHA-256 == metadata_hash.",
+          "verification": {
+            "service": "Concordium Agent Registry",
+            "verifyUrl": "https://agent-registry-mcp.concordium.com/v1/badge-check/3KK877gwQdq9qtKNg1fLSAZ3WvjmcT6wHiTRuprLxtkxDdCvNR",
+            "mcp": "https://agent-registry-mcp.concordium.com/mcp",
+            "docs": "https://docs.concordium.com/en/mainnet/technical-reference/agent-registry/concordium-badge.html"
+          }
+        }
+      }
+    ]
+  },
+  "provider": {
+    "organization": "Nursidiq Muzahidin Taufiq (solo builder)",
+    "url": "https://make.fun"
+  }
+}
